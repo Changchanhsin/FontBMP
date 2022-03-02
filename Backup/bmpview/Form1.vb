@@ -1,9 +1,8 @@
 ﻿Public Class Form1
     Dim xold As Integer
     Dim yold As Integer
-    Dim linesRow(20 * 2) As PictureBox
-    Dim linesCol(4 * 2) As PictureBox
-    Dim countChar As Long
+    Dim linesRow(36 * 2) As PictureBox
+    Dim linesCol(38 * 2) As PictureBox
 
     Private Sub PictureBox1_DoubleClick(ByVal sender As Object, ByVal e As System.EventArgs) Handles PictureBox1.DoubleClick
         If txtFilesCount.Text >= 10 Then
@@ -123,14 +122,14 @@
         grpOutput.DrawLine(Pens.Blue, 0, 256 * 49 + 12, 256 * (48 + 1) + 12, 256 * 49 + 12)
         grpOutput.DrawLine(Pens.Blue, 256 * 49 + 12, 0, 256 * 49 + 12, 256 * (48 + 1) + 12)
 
+        Dim countChar As Long
         Dim iT As Double
         Dim iL As Double
         Dim iDT As Integer
         Dim iDL As Integer
         Dim p As Integer
 
-        'countChar = Integer.Parse(txtCodeStart.Text, Globalization.NumberStyles.HexNumber) Mod 65536
-        countChar = 0
+        countChar = Integer.Parse(txtCodeStart.Text, Globalization.NumberStyles.HexNumber) Mod 65536
         ProgressBar1.Maximum = 10 * iRows
         ProgressBar1.Visible = True
         For p = 1 To txtFilesCount.Text
@@ -144,19 +143,19 @@
                 PictureBox1.Load(txtFilesPrefix.Text & p & ".png")
             End If
             img = PictureBox1.Image
-            For i = 0 To iCols - 1
-                For j = 0 To iRows - 1
-                    iT = iTop + (iHeight + iRowM) * (j)
-                    iL = iLeft + (iWidth + iColM) * (i)
-                    'If (p = 1 And i = 8 And j >= 16) Or (p = 10 And i = 32 And j >= 20) Or (p = 10 And i > 32) Then
-                    'Else
-                    iDT = 13 + Int(countChar / 256) * 49
-                    iDL = 13 + (countChar Mod 256) * 49
-                    grpOutput.DrawImage(img, New Rectangle(iDL, iDT, 48, 48), New Rectangle(iL, iT, 48, 48), GraphicsUnit.Pixel)
-                    countChar = countChar + 1
-                    'End If
+            For i = 0 To iRows - 1
+                For j = 0 To iCols - 1
+                    iT = iTop + (iHeight + iRowM) * (i)
+                    iL = iLeft + (iWidth + iColM) * (j)
+                    If (p = 1 And i = 8 And j >= 16) Or (p = 10 And i = 32 And j >= 20) Or (p = 10 And i > 32) Then
+                    Else
+                        iDT = 13 + Int(countChar / 256) * 49
+                        iDL = 13 + (countChar Mod 256) * 49
+                        grpOutput.DrawImage(img, New Rectangle(iDL, iDT, 48, 48), New Rectangle(iL, iT, 48, 48), GraphicsUnit.Pixel)
+                        countChar = countChar + 1
+                    End If
                 Next
-                'ProgressBar1.Value = (p - 1) * iRows + i
+                ProgressBar1.Value = (p - 1) * iRows + i
                 System.Windows.Forms.Application.DoEvents()
             Next
         Next
@@ -174,7 +173,7 @@
         Dim bmp = New Bitmap(48, 48)
         Dim aline(6) As Byte
         Dim i, j, k, m, n As Integer
-        Dim t As Integer
+
         Dim strFilePath As String
         strFilePath = txtHZFilename.Text
 
@@ -185,28 +184,27 @@
         ProgressBar1.Maximum = 40 * 256
         ProgressBar1.Visible = True
         PictureBox4.Visible = True
-        t = TextBox9.Text
-        For i = 0 To (countChar + 255) / 256
+        For i = 167 To 206
             For j = 0 To 255
                 grpTemp = Graphics.FromImage(bmp)
                 grpTemp.DrawImage(PictureBox2.Image, New Rectangle(0, 0, 48, 48), New Rectangle((j * 49 + 13), (i * 49 + 13), 48, 48), GraphicsUnit.Pixel)
-                Label10.Text = Hex(i * 256 + j) & ": " & (i * 49 + 13) & ", " & (j * 49 + 13)
+                Label10.Text = "2" & Hex(i * 256 + j) & ": " & (i * 49 + 13) & ", " & (j * 49 + 13)
                 PictureBox4.Image = bmp
                 For k = 0 To 47
                     For m = 0 To 5
                         aline(m) = 0
                         For n = 0 To 7
-                        If bmp.GetPixel(m * 8 + n, k).B > t Then
-                            aline(m) = aline(m) * 2 + 0
-                        Else
-                            aline(m) = aline(m) * 2 + 1
+                            If bmp.GetPixel(m * 8 + n, k).R > 10 Then
+                                aline(m) = aline(m) * 2 + 0
+                            Else
+                                aline(m) = aline(m) * 2 + 1
                             End If
                         Next
                         Bw.Write(aline(m))
                     Next
                 Next
                 Bw.Flush()
-                'ProgressBar1.Value = (i - 167) * 256 + j
+                ProgressBar1.Value = (i - 167) * 256 + j
                 System.Windows.Forms.Application.DoEvents()
             Next
         Next
@@ -216,7 +214,4 @@
         PictureBox4.Visible = False
     End Sub
 
-    Private Sub TextBox5_TextChanged(sender As Object, e As EventArgs)
-
-    End Sub
 End Class

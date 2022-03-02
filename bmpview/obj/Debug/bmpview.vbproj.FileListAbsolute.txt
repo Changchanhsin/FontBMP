@@ -1,0 +1,11 @@
+C:\Users\cesi\source\repos\Changchanhsin\FontBMP\bmpview\bin\Debug\bmpview.exe
+C:\Users\cesi\source\repos\Changchanhsin\FontBMP\bmpview\bin\Debug\bmpview.pdb
+C:\Users\cesi\source\repos\Changchanhsin\FontBMP\bmpview\bin\Debug\bmpview.xml
+C:\Users\cesi\source\repos\Changchanhsin\FontBMP\bmpview\obj\Debug\bmpview.vbprojAssemblyReference.cache
+C:\Users\cesi\source\repos\Changchanhsin\FontBMP\bmpview\obj\Debug\bmpview.Form1.resources
+C:\Users\cesi\source\repos\Changchanhsin\FontBMP\bmpview\obj\Debug\bmpview.Resources.resources
+C:\Users\cesi\source\repos\Changchanhsin\FontBMP\bmpview\obj\Debug\bmpview.vbproj.GenerateResource.cache
+C:\Users\cesi\source\repos\Changchanhsin\FontBMP\bmpview\obj\Debug\bmpview.vbproj.CoreCompileInputs.cache
+C:\Users\cesi\source\repos\Changchanhsin\FontBMP\bmpview\obj\Debug\bmpview.exe
+C:\Users\cesi\source\repos\Changchanhsin\FontBMP\bmpview\obj\Debug\bmpview.xml
+C:\Users\cesi\source\repos\Changchanhsin\FontBMP\bmpview\obj\Debug\bmpview.pdb
